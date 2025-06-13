@@ -19,7 +19,7 @@
         .container { 
             max-width: 500px; 
             padding: 2rem; 
-            box-sizing: border-box; /* Ensures padding is included in the width calculation */
+            box-sizing: border-box;
         }
         h1 { 
             font-size: 3rem; 
@@ -35,12 +35,12 @@
         }
         .email-form { 
             margin-top: 2.5rem; 
-            display: flex; /* Use Flexbox for alignment */
+            display: flex;
         }
         .email-input { 
             padding: 1rem; 
             font-size: 1rem; 
-            flex-grow: 1; 
+            flex-grow: 1; /* Let the input field take up all available space */
             border: 1px solid #ccc; 
             border-radius: 8px 0 0 8px; 
             border-right: none; 
@@ -54,34 +54,27 @@
             border: 1px solid #000; 
             border-radius: 0 8px 8px 0; 
             cursor: pointer; 
-            white-space: nowrap; /* Prevents button text from wrapping */
+            white-space: nowrap;
         }
 
-        /* --- MOBILE RESPONSIVE STYLES START HERE --- */
-        /* This code applies only when the screen is 600px wide or less */
+        /* Mobile Responsive Styles */
         @media (max-width: 600px) {
-            h1 {
-                font-size: 2.5rem; /* Make the title a bit smaller on mobile */
-            }
-            p {
-                font-size: 1.1rem; /* Adjust paragraph font size */
-            }
+            h1 { font-size: 2.5rem; }
+            p { font-size: 1.1rem; }
             .email-form {
-                flex-direction: column; /* Stack the form elements vertically */
+                flex-direction: column;
                 align-items: center;
             }
             .email-input, .submit-button {
-                width: 100%; /* Make both elements full-width */
-                border-radius: 8px; /* Round all corners for both elements */
+                width: 100%;
+                border-radius: 8px;
             }
             .email-input {
-                margin-bottom: 0.75rem; /* Add some space between the input and button */
-                border: 1px solid #ccc; /* Restore the border for a complete look */
+                margin-bottom: 0.75rem;
+                border: 1px solid #ccc;
                 text-align: center;
             }
         }
-        /* --- MOBILE RESPONSIVE STYLES END HERE --- */
-
     </style>
 </head>
 <body>
@@ -92,10 +85,19 @@
             Coming soon.
         </p>
         
-        <form action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc" method="post" target="_blank" class="email-form">
-            <input type="email" name="EMAIL" class="email-input" placeholder="Enter your email for updates" required>
-            <button type="submit" class="submit-button">Notify Me</button>
-        </form>
+        <form method="POST" action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc" target="_blank" class="email-form">
+            
+            <input type="email" name="CONTACT_EMAIL" class="email-input" placeholder="Your email to get notified" required>
+            
+            <button type="submit" class="submit-button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin">Notify Me</button>
+
+            <input type="hidden" name="zc_trackCode" value="ZCFORMVIEW">
+            <input type="hidden" name="zc_formIx" value="3zf8a7a1f43c45c4972481c9dfd3b01ee3fe90b28c0b3104b9885754c6085c764f">
+            <input type="hidden" name="submitType" value="optinCustomView">
+            <input type="hidden" name="zx" value="13417cc0e">
+            <input type="hidden" name="zcld" value="114840eef9e4ae961">
+            <input type="hidden" name="zctd" value="114840eef9e4ae7a9">
+            </form>
     </div>
 </body>
 </html>
