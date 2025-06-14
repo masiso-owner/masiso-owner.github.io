@@ -17,7 +17,7 @@
             color: #333; 
         }
         .container { 
-            max-width: 500px; 
+            max-width: 640px; 
             padding: 2rem; 
             box-sizing: border-box;
         }
@@ -36,11 +36,13 @@
         .email-form { 
             margin-top: 2.5rem; 
             display: flex;
+            flex-wrap: nowrap;
         }
         .email-input { 
             padding: 1rem; 
             font-size: 1rem; 
             flex-grow: 1; /* Let the input field take up all available space */
+            min-width: 0; /* prevent overflow at flexbox */
             border: 1px solid #ccc; 
             border-radius: 8px 0 0 8px; 
             border-right: none; 
