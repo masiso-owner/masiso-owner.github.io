@@ -17,7 +17,7 @@
             color: #333; 
         }
         .container { 
-            max-width: 640px; 
+            max-width: 680px; 
             padding: 2rem; 
             box-sizing: border-box;
         }
@@ -47,6 +47,10 @@
             border-radius: 8px 0 0 8px; 
             border-right: none; 
             box-sizing: border-box;
+            text-align: center
+        }
+        .email-input:focus {
+            text-align: left;
         }
         .submit-button { 
             padding: 1rem 1.5rem; 
@@ -89,7 +93,7 @@
         
         <form method="POST" action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc" target="_blank" class="email-form">
             
-            <input type="email" name="CONTACT_EMAIL" class="email-input" placeholder="Your email to get notified" required>
+            <input type="email" name="CONTACT_EMAIL" class="email-input" placeholder="Enter your email to get notified" required>
             
             <button type="submit" class="submit-button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin">Notify Me</button>
 
