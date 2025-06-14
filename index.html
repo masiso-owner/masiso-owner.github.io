@@ -42,6 +42,7 @@
       display: flex;
       justify-content: center;
       flex-wrap: nowrap;
+      position: relative;
     }
 
     .email-input {
@@ -69,13 +70,67 @@
     }
 
     .error-message {
-      color: red;
       font-size: 0.9rem;
       margin-top: 1rem;
+      color: #555;
       display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    /* Mobile Styles */
+    .error-message.visible {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 🎉 Popup */
+    .popup {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .popup-text {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .popup-button {
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* 📱 Mobile */
     @media (max-width: 600px) {
       .container {
         max-width: 500px;
@@ -109,70 +164,67 @@
       Coming soon.
     </p>
 
-    <form
-      method="POST"
-      action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc"
-      target="hidden_iframe"
-      class="email-form"
-      onsubmit="return handleSubmit(event)"
-    >
-      <input
-        type="email"
-        name="CONTACT_EMAIL"
-        class="email-input"
-        placeholder="Enter your email to get notified"
-        required
-      />
-      <button
-        type="submit"
-        class="submit-button"
-        name="SIGNUP_SUBMIT_BUTTON"
-        id="zcWebOptin"
-      >
-        Notify Me
-      </button>
-
+    <form method="POST" action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc" target="hidden_iframe" class="email-form" onsubmit="return handleSubmit(event)">
+      <input type="email" name="CONTACT_EMAIL" class="email-input" placeholder="Enter your email to get notified" required />
+      <button type="submit" class="submit-button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin">Notify Me</button>
       <input type="hidden" name="zc_trackCode" value="ZCFORMVIEW" />
-      <input
-        type="hidden"
-        name="zc_formIx"
-        value="3zf8a7a1f43c45c4972481c9dfd3b01ee3fe90b28c0b3104b9885754c6085c764f"
-      />
+      <input type="hidden" name="zc_formIx" value="3zf8a7a1f43c45c4972481c9dfd3b01ee3fe90b28c0b3104b9885754c6085c764f" />
       <input type="hidden" name="submitType" value="optinCustomView" />
       <input type="hidden" name="zx" value="13417cc0e" />
       <input type="hidden" name="zcld" value="114840eef9e4ae961" />
       <input type="hidden" name="zctd" value="114840eef9e4ae7a9" />
     </form>
 
-    <div class="error-message" id="error-msg">
-      Please enter a valid email address.
+    <div class="error-message" id="error-msg">We need a valid email to notify you 😊</div>
+
+    <!-- ✅ Custom Popup -->
+    <div id="success-popup" class="popup">
+      <div class="popup-content">
+        <div class="popup-icon">🎉</div>
+        <div class="popup-text">Thank you for subscribing!</div>
+        <button class="popup-button" onclick="closePopup()">OK</button>
+      </div>
     </div>
 
-    <!-- Prevent page reload -->
+    <!-- ⛔ prevent page reload -->
     <iframe name="hidden_iframe" style="display:none;"></iframe>
   </div>
 
   <script>
-    function handleSubmit(event) {
-      const emailInput = document.querySelector(".email-input");
-      const errorMsg = document.getElementById("error-msg");
-      const email = emailInput.value.trim();
+    const emailInput = document.querySelector(".email-input");
+    const errorMsg = document.getElementById("error-msg");
 
-      // Simple email regex validation
+    function handleSubmit(event) {
+      const email = emailInput.value.trim();
       const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
       if (!isValid) {
-        errorMsg.style.display = "block";
+        errorMsg.classList.add("visible");
         return false;
       } else {
-        errorMsg.style.display = "none";
+        errorMsg.classList.remove("visible");
         setTimeout(() => {
-          alert("✅ Thank you for subscribing!");
+          showPopup();
           emailInput.value = "";
         }, 300);
         return true;
       }
     }
+
+    function showPopup() {
+      document.getElementById("success-popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("success-popup").style.display = "none";
+    }
+
+    // Hide error as user types
+    emailInput.addEventListener("input", () => {
+      if (errorMsg.classList.contains("visible")) {
+        errorMsg.classList.remove("visible");
+      }
+    });
   </script>
 </body>
 </html>
