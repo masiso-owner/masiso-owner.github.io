@@ -18,8 +18,6 @@
     }
 
     .container {
-      width: fit-content;
-      max-width: 90vw;
       padding: 2rem;
       box-sizing: border-box;
       margin: 0 auto;
@@ -42,20 +40,21 @@
     .email-form {
       margin-top: 2.5rem;
       display: flex;
+      justify-content: center;
       flex-wrap: nowrap;
     }
 
     .email-input {
       padding: 1rem;
       font-size: 1rem;
-      flex-grow: 1;
-      width: 36ch; /* placeholder 길이에 맞춤 */
-      min-width: 200px;
+      width: 34ch;
       text-align: center;
       border: 1px solid #ccc;
       border-radius: 8px 0 0 8px;
       border-right: none;
       box-sizing: border-box;
+      flex-grow: 0;
+      min-width: auto;
     }
 
     .submit-button {
@@ -67,6 +66,13 @@
       border-radius: 0 8px 8px 0;
       cursor: pointer;
       white-space: nowrap;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      display: none;
     }
 
     /* Mobile Styles */
@@ -103,7 +109,13 @@
       Coming soon.
     </p>
 
-    <form method="POST" action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc" target="_blank" class="email-form">
+    <form
+      method="POST"
+      action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc"
+      target="hidden_iframe"
+      class="email-form"
+      onsubmit="return handleSubmit(event)"
+    >
       <input
         type="email"
         name="CONTACT_EMAIL"
@@ -111,15 +123,56 @@
         placeholder="Enter your email to get notified"
         required
       />
-      <button type="submit" class="submit-button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin">Notify Me</button>
+      <button
+        type="submit"
+        class="submit-button"
+        name="SIGNUP_SUBMIT_BUTTON"
+        id="zcWebOptin"
+      >
+        Notify Me
+      </button>
 
       <input type="hidden" name="zc_trackCode" value="ZCFORMVIEW" />
-      <input type="hidden" name="zc_formIx" value="3zf8a7a1f43c45c4972481c9dfd3b01ee3fe90b28c0b3104b9885754c6085c764f" />
+      <input
+        type="hidden"
+        name="zc_formIx"
+        value="3zf8a7a1f43c45c4972481c9dfd3b01ee3fe90b28c0b3104b9885754c6085c764f"
+      />
       <input type="hidden" name="submitType" value="optinCustomView" />
       <input type="hidden" name="zx" value="13417cc0e" />
       <input type="hidden" name="zcld" value="114840eef9e4ae961" />
       <input type="hidden" name="zctd" value="114840eef9e4ae7a9" />
     </form>
+
+    <div class="error-message" id="error-msg">
+      Please enter a valid email address.
+    </div>
+
+    <!-- Prevent page reload -->
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
   </div>
+
+  <script>
+    function handleSubmit(event) {
+      const emailInput = document.querySelector(".email-input");
+      const errorMsg = document.getElementById("error-msg");
+      const email = emailInput.value.trim();
+
+      // Simple email regex validation
+      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!isValid) {
+        errorMsg.style.display = "block";
+        return false;
+      } else {
+        errorMsg.style.display = "none";
+        setTimeout(() => {
+          alert("✅ Thank you for subscribing!");
+          emailInput.value = "";
+        }, 300);
+        return true;
+      }
+    }
+  </script>
 </body>
 </html>
