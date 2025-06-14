@@ -1,109 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>masiso - Coming Soon</title>
-    <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-            background-color: #f7f7f7; 
-            text-align: center; 
-            color: #333; 
-        }
-        .container { 
-            max-width: 680px; 
-            padding: 2rem; 
-            box-sizing: border-box;
-        }
-        h1 { 
-            font-size: 3rem; 
-            margin-bottom: 0.5rem; 
-            font-weight: 700; 
-            color: #000; 
-            letter-spacing: -1px; 
-        }
-        p { 
-            font-size: 1.25rem; 
-            color: #555; 
-            line-height: 1.6; 
-        }
-        .email-form { 
-            margin-top: 2.5rem; 
-            display: flex;
-            flex-wrap: nowrap;
-        }
-        .email-input { 
-            padding: 1rem; 
-            font-size: 1rem; 
-            flex-grow: 1; /* Let the input field take up all available space */
-            min-width: 0; /* prevent overflow at flexbox */
-            border: 1px solid #ccc; 
-            border-radius: 8px 0 0 8px; 
-            border-right: none; 
-            box-sizing: border-box;
-            text-align: center
-        }
-        .email-input:focus {
-            text-align: left;
-        }
-        .submit-button { 
-            padding: 1rem 1.5rem; 
-            font-size: 1rem; 
-            background-color: #000; 
-            color: #fff; 
-            border: 1px solid #000; 
-            border-radius: 0 8px 8px 0; 
-            cursor: pointer; 
-            white-space: nowrap;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>masiso - Coming Soon</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f7f7f7;
+      text-align: center;
+      color: #333;
+    }
 
-        /* Mobile Responsive Styles */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            p { font-size: 1.1rem; }
-            .email-form {
-                flex-direction: column;
-                align-items: center;
-            }
-            .email-input, .submit-button {
-                width: 100%;
-                border-radius: 8px;
-            }
-            .email-input {
-                margin-bottom: 0.75rem;
-                border: 1px solid #ccc;
-                text-align: center;
-            }
-        }
-    </style>
+    .container {
+      width: fit-content;
+      max-width: 90vw;
+      padding: 2rem;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: -1px;
+    }
+
+    p {
+      font-size: 1.25rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .email-form {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .email-input {
+      padding: 1rem;
+      font-size: 1rem;
+      flex-grow: 1;
+      width: 36ch; /* placeholder 길이에 맞춤 */
+      min-width: 200px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 8px 0 0 8px;
+      border-right: none;
+      box-sizing: border-box;
+    }
+
+    .submit-button {
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #000;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 600px) {
+      .container {
+        max-width: 500px;
+        width: 100%;
+      }
+
+      .email-form {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .email-input,
+      .submit-button {
+        width: 100%;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .email-input {
+        margin-bottom: 0.75rem;
+        border-right: 1px solid #ccc;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>masiso</h1>
-        <p>
-            A new, delicious way to fuel your day.<br/>
-            Coming soon.
-        </p>
-        
-        <form method="POST" action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc" target="_blank" class="email-form">
-            
-            <input type="email" name="CONTACT_EMAIL" class="email-input" placeholder="Enter your email to get notified" required>
-            
-            <button type="submit" class="submit-button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin">Notify Me</button>
+  <div class="container">
+    <h1>masiso</h1>
+    <p>
+      A new, delicious way to fuel your day.<br/>
+      Coming soon.
+    </p>
 
-            <input type="hidden" name="zc_trackCode" value="ZCFORMVIEW">
-            <input type="hidden" name="zc_formIx" value="3zf8a7a1f43c45c4972481c9dfd3b01ee3fe90b28c0b3104b9885754c6085c764f">
-            <input type="hidden" name="submitType" value="optinCustomView">
-            <input type="hidden" name="zx" value="13417cc0e">
-            <input type="hidden" name="zcld" value="114840eef9e4ae961">
-            <input type="hidden" name="zctd" value="114840eef9e4ae7a9">
-            </form>
-    </div>
+    <form method="POST" action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc" target="_blank" class="email-form">
+      <input
+        type="email"
+        name="CONTACT_EMAIL"
+        class="email-input"
+        placeholder="Enter your email to get notified"
+        required
+      />
+      <button type="submit" class="submit-button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin">Notify Me</button>
+
+      <input type="hidden" name="zc_trackCode" value="ZCFORMVIEW" />
+      <input type="hidden" name="zc_formIx" value="3zf8a7a1f43c45c4972481c9dfd3b01ee3fe90b28c0b3104b9885754c6085c764f" />
+      <input type="hidden" name="submitType" value="optinCustomView" />
+      <input type="hidden" name="zx" value="13417cc0e" />
+      <input type="hidden" name="zcld" value="114840eef9e4ae961" />
+      <input type="hidden" name="zctd" value="114840eef9e4ae7a9" />
+    </form>
+  </div>
 </body>
 </html>
