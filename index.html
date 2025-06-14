@@ -85,7 +85,6 @@
       transform: translateY(0);
     }
 
-    /* 🎉 Popup */
     .popup {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -130,7 +129,6 @@
       to   { opacity: 1; transform: scale(1); }
     }
 
-    /* 📱 Mobile */
     @media (max-width: 600px) {
       .container {
         max-width: 500px;
@@ -164,9 +162,22 @@
       Coming soon.
     </p>
 
-    <form method="POST" action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc" target="hidden_iframe" class="email-form" onsubmit="return handleSubmit(event)">
-      <input type="email" name="CONTACT_EMAIL" class="email-input" placeholder="Enter your email to get notified" required />
-      <button type="submit" class="submit-button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin">Notify Me</button>
+    <form
+      method="POST"
+      action="https://zcsub-cmpzourl.maillist-manage.com/weboptin.zc"
+      target="hidden_iframe"
+      class="email-form"
+      onsubmit="return handleSubmit(event)"
+      novalidate
+    >
+      <input
+        type="email"
+        name="CONTACT_EMAIL"
+        class="email-input"
+        placeholder="Enter your email to get notified"
+      />
+      <button type="submit" class="submit-button">Notify Me</button>
+
       <input type="hidden" name="zc_trackCode" value="ZCFORMVIEW" />
       <input type="hidden" name="zc_formIx" value="3zf8a7a1f43c45c4972481c9dfd3b01ee3fe90b28c0b3104b9885754c6085c764f" />
       <input type="hidden" name="submitType" value="optinCustomView" />
@@ -175,9 +186,10 @@
       <input type="hidden" name="zctd" value="114840eef9e4ae7a9" />
     </form>
 
-    <div class="error-message" id="error-msg">We need a valid email to notify you 😊</div>
+    <div class="error-message" id="error-msg">
+      We need a valid email to notify you 😊
+    </div>
 
-    <!-- ✅ Custom Popup -->
     <div id="success-popup" class="popup">
       <div class="popup-content">
         <div class="popup-icon">🎉</div>
@@ -186,7 +198,6 @@
       </div>
     </div>
 
-    <!-- ⛔ prevent page reload -->
     <iframe name="hidden_iframe" style="display:none;"></iframe>
   </div>
 
@@ -219,7 +230,6 @@
       document.getElementById("success-popup").style.display = "none";
     }
 
-    // Hide error as user types
     emailInput.addEventListener("input", () => {
       if (errorMsg.classList.contains("visible")) {
         errorMsg.classList.remove("visible");
