@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>masiso – Coming Soon</title>
+  <title>masiso - Coming Soon</title>
 
-  <!-- 1) 리소스 연결 최적화 -->
+  <!-- 1) MailerLite 자산에 미리 연결해서 DNS 조회·TLS 핸드쉐이크 시간을 절약합니다 -->
   <link rel="preconnect" href="https://assets.mailerlite.com">
   <link rel="dns-prefetch" href="https://assets.mailerlite.com">
 
-  <!-- 2) Universal 스크립트 비동기 로드 -->
+  <!-- 2) Universal 스크립트 async·defer 로 설정 -->
   <script async defer src="https://assets.mailerlite.com/js/universal.js"></script>
   <script>
     window.ml = window.ml || function(){ (ml.q = ml.q||[]).push(arguments) };
     ml('account', '1619168');
   </script>
-
+  
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -46,7 +46,9 @@
       line-height: 1.6;
       margin-bottom: 0.5rem; /* Coming soon.과 폼 사이 간격 조정 */
     }
-
+    .ml-embedded {
+      margin-top: 0.25rem; /* 폼 위쪽 여백 추가 조정 */
+    }
     /* 팝업 스타일 */
     .popup {
       position: fixed;
@@ -101,8 +103,17 @@
       }
     }
   </style>
-</head>
 
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};
+    n=d.createElement(e);n.async=1;n.src=u;
+    var s=d.getElementsByTagName(e)[0];s.parentNode.insertBefore(n,s);
+    })(window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+    ml('account', '1619168');
+  </script>
+  <!-- End MailerLite Universal -->
+</head>
 <body>
   <div class="container">
     <h1>masiso</h1>
@@ -111,18 +122,32 @@
       Coming soon.
     </p>
 
-    <!-- 3) Static HTML 스니펫: MailerLite 대시보드 → Integrate → HTML code 탭에서 복사해 붙여넣으세요 -->
-    <form class="ml-form" action="https://static.mailerlite.com/webforms/submit" method="post" data-code="YOUR_FORM_CODE">
-      <div class="ml-form__header">Notify me!</div>
-      <div class="ml-form__fields">
-        <input
-          type="email"
-          name="fields[email]"
-          placeholder="Enter your email to get notified"
-          required
-        />
-        <button type="submit">Subscribe</button>
+    <!-- MailerLite 임베디드 폼 -->
+    <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1619168/forms/158156111087666742/subscribe" data-code="" method="post" target="_blank">
+      <div class="ml-form-formContent">
+        <div class="ml-form-fieldRow ml-last-item">
+          <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+            <input
+              aria-label="email"
+              aria-required="true"
+              type="email"
+              class="form-control"
+              name="fields[email]"
+              placeholder="Enter your email to get notified"
+              autocomplete="email"
+            />
+          </div>
+        </div>
       </div>
+      <input type="hidden" name="ml-submit" value="1" />
+      <div class="ml-form-embedSubmit">
+        <button type="submit" class="primary">Subscribe</button>
+        <button disabled="disabled" style="display: none;" type="button" class="loading">
+          <div class="ml-form-embedSubmitLoad"></div>
+          <span class="sr-only">Loading...</span>
+        </button>
+      </div>
+      <input type="hidden" name="anticsrf" value="true" />
     </form>
 
     <!-- 성공 팝업 -->
@@ -136,20 +161,21 @@
   </div>
 
   <script>
-    // 팝업 표시
+    // 팝업 표시 함수
     function showPopup() {
-      document.getElementById('success-popup').style.display = 'flex';
+      document.getElementById("success-popup").style.display = "flex";
     }
-    // 팝업 닫기
+    // 팝업 닫기 함수
     function closePopup() {
-      document.getElementById('success-popup').style.display = 'none';
+      document.getElementById("success-popup").style.display = "none";
     }
-
     // MailerLite 이벤트 훅
     document.addEventListener('DOMContentLoaded', function() {
+      // 구독 성공 시
       ml('subscribeSuccess', function(data) {
         showPopup();
       });
+      // 에러 발생 시 (잘못된 이메일 형식 등)
       ml('subscribeError', function(err) {
         alert('Please enter a valid email address.');
       });
