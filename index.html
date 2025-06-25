@@ -37,70 +37,18 @@
     .ml-embedded {
       margin-top: 0.1rem; /* 폼 위쪽 여백 추가 조정 */
     }
-    /* 팝업 스타일 */
-    .popup {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    .popup-content {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 2rem;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 0.4s ease;
-      max-width: 90%;
-      width: 320px;
-    }
-    .popup-icon {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-    }
-    .popup-text {
-      font-size: 1.2rem;
-      color: #333;
-      margin-bottom: 1.5rem;
-    }
-    .popup-button {
-      padding: 0.6rem 1.5rem;
-      font-size: 1rem;
-      background: #000;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .popup-button:hover {
-      background: #222;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @media (max-width: 600px) {
-      .container {
-        max-width: 500px;
-        width: 100%;
-      }
-    }
   </style>
 
   <!-- MailerLite Universal -->
   <script>
-    (function(w,d,e,u,f,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};
-    n=d.createElement(e);n.async=1;n.src=u;
-    var s=d.getElementsByTagName(e)[0];s.parentNode.insertBefore(n,s);
-    })(window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
-    ml('account', '1619168');
+      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+      ml('account', '1619168');
   </script>
   <!-- End MailerLite Universal -->
+  
 </head>
 <body>
   <div class="container">
