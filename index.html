@@ -16,13 +16,11 @@
       text-align: center;
       color: #333;
     }
-
     .container {
       padding: 2rem;
       box-sizing: border-box;
       margin: 0 auto;
     }
-
     h1 {
       font-size: 3rem;
       margin-bottom: 0.5rem;
@@ -30,61 +28,16 @@
       color: #000;
       letter-spacing: -1px;
     }
-
     p {
       font-size: 1.25rem;
       color: #555;
       line-height: 1.6;
+      margin-bottom: 0.5rem; /* Coming soon.과 폼 사이 간격 조정 */
     }
-
-    .email-form {
-      margin-top: 2.5rem;
-      display: flex;
-      justify-content: center;
-      flex-wrap: nowrap;
-      position: relative;
+    .ml-embedded {
+      margin-top: 0.25rem; /* 폼 위쪽 여백 추가 조정 */
     }
-
-    .email-input {
-      padding: 1rem;
-      font-size: 1rem;
-      width: 34ch;
-      text-align: center;
-      border: 1px solid #ccc;
-      border-radius: 8px 0 0 8px;
-      border-right: none;
-      box-sizing: border-box;
-      flex-grow: 0;
-      min-width: auto;
-    }
-
-    .submit-button {
-      padding: 1rem 1.5rem;
-      font-size: 1rem;
-      background-color: #000;
-      color: #fff;
-      border: 1px solid #000;
-      border-radius: 0 8px 8px 0;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .error-message {
-      font-size: 0.9rem;
-      margin-top: 1rem;
-      color: #555;
-      display: none;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .error-message.visible {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    /* 팝업 스타일 */
     .popup {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -94,7 +47,6 @@
       align-items: center;
       z-index: 9999;
     }
-    
     .popup-content {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
@@ -106,18 +58,15 @@
       max-width: 90%;
       width: 320px;
     }
-    
     .popup-icon {
       font-size: 2.8rem;
       margin-bottom: 1rem;
     }
-    
     .popup-text {
       font-size: 1.2rem;
       color: #333;
       margin-bottom: 1.5rem;
     }
-    
     .popup-button {
       padding: 0.6rem 1.5rem;
       font-size: 1rem;
@@ -128,47 +77,28 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    
     .popup-button:hover {
       background: #222;
     }
-    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    
     @media (max-width: 600px) {
       .container {
         max-width: 500px;
         width: 100%;
       }
-
-      .email-form {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .email-input,
-      .submit-button {
-        width: 100%;
-        border-radius: 8px;
-        text-align: center;
-      }
-
-      .email-input {
-        margin-bottom: 0.75rem;
-        border-right: 1px solid #ccc;
-      }
     }
   </style>
+
   <!-- MailerLite Universal -->
   <script>
-      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-      ml('account', '1619168');
+    (function(w,d,e,u,f,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};
+    n=d.createElement(e);n.async=1;n.src=u;
+    var s=d.getElementsByTagName(e)[0];s.parentNode.insertBefore(n,s);
+    })(window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+    ml('account', '1619168');
   </script>
   <!-- End MailerLite Universal -->
 </head>
@@ -180,12 +110,10 @@
       Coming soon.
     </p>
 
+    <!-- MailerLite 임베디드 폼 -->
     <div class="ml-embedded" data-form="fZeTsr"></div>
 
-    <div class="error-message" id="error-msg">
-      We need a valid email to notify you 😊
-    </div>
-
+    <!-- 성공 팝업 -->
     <div id="success-popup" class="popup">
       <div class="popup-content">
         <div class="popup-icon">🎉</div>
@@ -193,43 +121,27 @@
         <button class="popup-button" onclick="closePopup()">OK</button>
       </div>
     </div>
-
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
   </div>
 
   <script>
-    const emailInput = document.querySelector(".email-input");
-    const errorMsg = document.getElementById("error-msg");
-
-    function handleSubmit(event) {
-      const email = emailInput.value.trim();
-      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-      if (!isValid) {
-        errorMsg.classList.add("visible");
-        return false;
-      } else {
-        errorMsg.classList.remove("visible");
-        setTimeout(() => {
-          showPopup();
-          emailInput.value = "";
-        }, 300);
-        return true;
-      }
-    }
-
+    // 팝업 표시 함수
     function showPopup() {
       document.getElementById("success-popup").style.display = "flex";
     }
-
+    // 팝업 닫기 함수
     function closePopup() {
       document.getElementById("success-popup").style.display = "none";
     }
-
-    emailInput.addEventListener("input", () => {
-      if (errorMsg.classList.contains("visible")) {
-        errorMsg.classList.remove("visible");
-      }
+    // MailerLite 이벤트 훅
+    document.addEventListener('DOMContentLoaded', function() {
+      // 구독 성공 시
+      ml('subscribeSuccess', function(data) {
+        showPopup();
+      });
+      // 에러 발생 시 (잘못된 이메일 형식 등)
+      ml('subscribeError', function(err) {
+        alert('유효한 이메일 주소를 입력해 주세요.');
+      });
     });
   </script>
 </body>
