@@ -37,6 +37,22 @@
     .ml-embedded {
       margin-top: 0.1rem; /* 폼 위쪽 여백 추가 조정 */
     }
+    /* --- Social Links Styles Start Here --- */
+    .social-links {
+      margin-top: 2.5rem; /* 폼과 아이콘 사이의 간격 */
+    }
+    .social-links a {
+      display: inline-block;
+      opacity: 0.6; /* 기본 투명도 */
+      transition: opacity 0.2s ease-in-out; /* 부드러운 효과를 위한 트랜지션 */
+    }
+    .social-links a:hover {
+      opacity: 1.0; /* 마우스를 올리면 진하게 */
+    }
+    .social-links svg {
+      stroke: #2C2C2C; /* 우리가 정한 Off-Black 색상 */
+    }
+    /* --- Social Links Styles End Here --- */    
   </style>
 
   <!-- MailerLite Universal -->
@@ -60,6 +76,12 @@
 
     <!-- MailerLite 임베디드 폼 -->
     <div class="ml-embedded" data-form="fZeTsr"></div>
+    
+  <div class="social-links">
+      <a href="https://www.instagram.com/drinkmasiso" target="_blank" aria-label="Instagram Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      </a>
+  </div>    
 
   </div>
 
