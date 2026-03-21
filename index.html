@@ -149,6 +149,44 @@ nav.scrolled {
   display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;
   opacity: 0; animation: fadeIn 1s ease 0.6s forwards;
 }
+.real-pouch-container {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.real-pouch-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 2;
+  image-rendering: -webkit-optimize-contrast;
+  animation: float 4s ease-in-out infinite;
+}
+.pouch-shadow {
+  position: absolute;
+  bottom: -20px;
+  width: 220px;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 70%);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  animation: shadowScale 4s ease-in-out infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+@keyframes shadowScale {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
 .pouch-wrapper {
   width: 200px; position: relative;
   filter: drop-shadow(0 12px 40px rgba(0,0,0,0.1));
@@ -340,6 +378,8 @@ footer { background: var(--charcoal); border-top: 1px solid rgba(255,255,255,0.0
   .hero-sub { margin: 0 auto 28px; }
   .hero-stats { justify-content: center; }
   .hero-cta-row { justify-content: center; flex-wrap: wrap; }
+  .real-pouch-container { max-width: 260px; }
+  .pouch-shadow { width: 180px; bottom: -15px; }
   .pouch-wrapper { width: 160px; }
   .pouch-body { height: 310px; padding: 18px 14px 18px; }
   .pouch-selling-primary { font-size: 36px; }
@@ -425,24 +465,14 @@ footer { background: var(--charcoal); border-top: 1px solid rgba(255,255,255,0.0
         </div>
       </div>
       <div class="hero-visual">
-        <div class="pouch-wrapper">
-          <div class="spout-assembly">
-            <div class="cap"></div><div class="cap-ring"></div><div class="neck"></div><div class="spout-base"></div>
-          </div>
-          <div class="pouch-body">
-            <svg class="pouch-logo" viewBox="42 42 316 316" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldFoilPouch" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A07830"/><stop offset="30%" stop-color="#C9A84E"/><stop offset="50%" stop-color="#E8D088"/><stop offset="70%" stop-color="#C9A84E"/><stop offset="100%" stop-color="#A07830"/></linearGradient></defs><rect x="50" y="50" width="300" height="300" rx="28" fill="url(#goldFoilPouch)" stroke="url(#goldFoilPouch)" stroke-width="15"/><rect x="72.5" y="72.5" width="255" height="255" rx="16.5" fill="#F5F2ED" stroke="#F5F2ED" stroke-width="15"/><path d="M212.145 235.2C209.892 235.027 207.812 234.16 205.905 232.6C204.172 230.867 204.085 228.787 205.645 226.36L254.265 148.36C255.825 145.933 258.079 144.72 261.025 144.72C264.145 144.72 266.485 145.933 268.045 148.36L316.405 226.36C317.792 228.96 317.619 231.04 315.885 232.6C314.325 234.16 312.332 235.027 309.905 235.2C308.345 235.373 306.785 235.2 305.225 234.68C303.839 233.987 302.712 232.947 301.845 231.56L261.025 165L220.205 231.56C219.339 233.293 218.125 234.42 216.565 234.94C215.179 235.287 213.705 235.373 212.145 235.2Z" fill="url(#goldFoilPouch)"/><path d="M90.1454 235.2C87.8921 235.027 85.8121 234.16 83.9054 232.6C82.1721 230.867 82.0854 228.787 83.6454 226.36L132.265 148.36C133.825 145.933 136.079 144.72 139.025 144.72C142.145 144.72 144.485 145.933 146.045 148.36L194.405 226.36C195.792 228.96 195.619 231.04 193.885 232.6C192.325 234.16 190.332 235.027 187.905 235.2C186.345 235.373 184.785 235.2 183.225 234.68C181.839 233.987 180.712 232.947 179.845 231.56L139.025 165L98.2054 231.56C97.3387 233.293 96.1254 234.42 94.5654 234.94C93.1787 235.287 91.7054 235.373 90.1454 235.2Z" fill="url(#goldFoilPouch)"/></svg>
-            <div class="pouch-wordmark">masiso</div>
-            <div class="pouch-product-name">Matcha Latte Protein</div>
-            <div class="pouch-divider"></div>
-            <div class="pouch-selling-primary">2g</div>
-            <div class="pouch-selling-unit">sugar</div>
-            <div class="pouch-selling-secondary">19g protein · ~130 cal</div>
-            <div class="pouch-note">Built-in agitator · Just add water &amp; shake</div>
-            <div class="pouch-weight">NET WT 1.4 OZ (40.8g)</div>
-            <div class="flavor-bar"></div>
-          </div>
+        <div class="real-pouch-container">
+          <picture>
+            <source srcset="masiso-pouch-VMM.webp" type="image/webp">
+            <img src="masiso-pouch-VMM.jpg" alt="masiso Matcha Latte Protein Pouch" class="real-pouch-image">
+          </picture>
+          <div class="pouch-shadow"></div>
         </div>
-        <p style="margin-top:16px; font-size:10px; color:var(--warm-gray); letter-spacing:0.03em;">Conceptual rendering. Final packaging may vary.</p>
+        <p style="margin-top: 24px; font-size: 10px; color: var(--warm-gray); letter-spacing: 0.03em; text-align: center;">Conceptual rendering. Final packaging may vary.</p>
       </div>
     </div>
   </div>
@@ -533,7 +563,7 @@ footer { background: var(--charcoal); border-top: 1px solid rgba(255,255,255,0.0
       <div class="plan-step reveal" style="transition-delay:0.2s">
         <div class="plan-step-num">3</div>
         <h3>Move on</h3>
-        <p>Built-in agitator mixes it smooth. Shake, sip, and get back to your day.</p>
+        <p>Shake, sip, and get back to your day.</p>
       </div>
     </div>
   </div>
